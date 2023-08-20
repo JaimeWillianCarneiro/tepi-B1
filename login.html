@@ -21,18 +21,18 @@
             <h2>Login</h2>
             <p> Ainda não é um membro? <a href="cadastro.html">Cadastrar</a></p>
             <!-- <form action="#"> -->
-              <form name="form-users" id="formUsers" method="post" action="/dologin/">
+              <form name="form-users" id="formUsers" method="post" >
 
     
                
                 <div class="input-group">
-                    <label for="usuario"> Usuário</label>
-                    <input type="text"name="user" id="usuario" placeholder="Digite seu usuário" required>
+                    <label for="usuario"> Email</label>
+                    <input type="text"name="user" id="email" placeholder="exemplo@email.com" required>
                 </div>
 
                 <div class="input-group">
                     <label for="senha">Senha</label>
-                    <input type="password"  name="password" id="senha" placeholder="Digite sua senha" required>
+                    <input type="password"  name="password" id="password" placeholder="Digite sua senha" required>
                 </div>
 
 <!-- 
@@ -40,7 +40,7 @@
 
                 
                 <div class="input-group">
-                    <button>Logar</button>
+                    <button id="submitButton">Logar</button>
                  </div>
             </form>
 
@@ -51,7 +51,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, updateProfile,signInWithEmailAndPasswor } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -77,17 +77,17 @@
     
         console.log("antes");
     
-        app.signInWithEmailAndPassword(auth, "paulorsaf@gmail.com", "123456").then(response => {
-            console.log('success', response)
-        }).catch(error => {
-            console.log('error', error)
-        });
-        console.log('depois')
+        // app.signInWithEmailAndPassword(auth, "paulorsaf@gmail.com", "123456").then(response => {
+        //     console.log('success', response)
+        // }).catch(error => {
+        //     console.log('error', error)
+        // });
+        // console.log('depois')
         
         form.addEventListener('submit', function(event){
                 event.preventDefault();
     
-                const nome = document.getElementById('name').value;
+                
                 const email = document.getElementById("email").value;
                 const senha = document.getElementById("password").value;
     
@@ -98,22 +98,13 @@
                 </div>
                 `;
                 
-                createUserWithEmailAndPassword(auth,email, senha)
-                .then(function(userCredential){
-                    const user = userCredential.user;
-    
-                    // Atualizar o perfil do usuário com o nome
-                    updateProfile(user, {
-                        displayName: nome
-                    }).then(function() {
-                        window.location.href = "home.html";
-                    }).catch(function(error) {
-                        alert("Erro ao atualizar perfil: " + error.message);
-                    })
-    
-                }).catch(function(error){
-                    alert("Ocorreu um erro");
-                });
+                signInWithEmailAndPassword(auth,email, senha)
+			.then(function(userCredential){
+				const user = userCredential.user;
+				window.location.href = "home.html";
+			}).catch(function(error){
+				alert("Email e/ou senha incorretos");
+			});
     
             });
     
