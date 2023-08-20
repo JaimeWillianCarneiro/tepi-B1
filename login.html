@@ -1,0 +1,51 @@
+<!>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+</head>
+<body>
+    <div class="box">
+        <div class="img-box">
+            <!-- <img src="img3.png"> -->
+
+            <img src="{%static 'img/img3.png' %}" >
+
+        </div>
+        <div class="form-box">
+            <h2>Login</h2>
+            <p> Ainda não é um membro? <a href="/cadastro">Cadastrar</a></p>
+            <!-- <form action="#"> -->
+              <form name="form-users" id="formUsers" method="post" action="/dologin/">
+
+    
+               
+                <div class="input-group">
+                    <label for="usuario"> Usuário</label>
+                    <input type="text"name="user" id="usuario" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password"  name="password" id="senha" placeholder="Digite sua senha" required>
+                </div>
+
+<!-- 
+                <input class="btn btn-dark mt-4" type="submit" value="Entrar"> -->
+
+                
+                <div class="input-group">
+                    <button>Logar</button>
+                 </div>
+            </form>
+
+        </div>
+
+    </div>
+</body>
+</html>

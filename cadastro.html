@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <!-- <link  rel="stylesheet" href="cadastro.css"> -->
+    <link rel="stylesheet" href="{% static 'cadastro/cadastro.css' %}">
+</head>
+<body>
+    <div class="box">
+        <div class="img-box">
+            <img src="img/img-cadastro.png" >
+            <!-- <img src="img-cadastro.png"> -->
+
+        </div>
+        <div class="form-box">
+            <h2>Criar Conta</h2>
+            <p> Já é um membro? <a href="login.html">Login</a></p>
+            <form name="form-users" id="formUsers" method="post" action="/store/">
+                {% if msg %}
+                <div class="alert {{class}}"> 
+                    {{msg}} 
+                </div>
+            {% endif %}
+
+
+                {% csrf_token %}
+
+                
+
+                <div class="input-group">
+                    <label for="nome"> Nome </label>
+                     <input type="text" id="name"  name= "name" placeholder="Digite seu nome" required> 
+                    
+
+                </div>
+              
+
+
+                <div class="input-group">
+                    <label for="name" class="form_label"> Sobrenome:  </label>
+                    <input type="text" id="name"  name= "sobrenome" placeholder="Digite seu sobrenome" required> 
+                   
+                </div>
+   
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="name"  name= "email" placeholder="Digite seu e-mail" required>
+                    {% comment %} {{form.email}} {% endcomment %}
+                </div>
+
+                <div class="input-group">
+                    <label for="usuario"> Usuário</label>
+                    <input type="text" id="name"  name= "username" placeholder="Nome de usuário" required>
+                    {% comment %} {{form.nomeUsuario}} {% endcomment %}
+                </div>
+        <div class="input-group">
+                    <label for="CPF"> CPF</label>
+                  
+                    <input type="text" id="name"  name= "cpf" placeholder="Digite seu CPF" required>
+                    
+                    </div>
+                
+
+        
+                <div class="input-group">
+                    <label for="telefone">Telefone</label>
+                    
+                    <input type="text" id="name"  name= "telefone" placeholder="Digite seu telefone" required>
+                </div>
+  
+
+                <div class="input-group w50">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="password-conf" name="password" placeholder="Digite a  senha" required>
+                </div>
+
+                       
+
+                <div class="input-group w50">
+                    <label for="Confirmarsenha">Confirmar senha</label>
+                    <input type="password" id="password-conf" name="password-conf" placeholder="Confirme a  senha" required>
+                </div>
+
+                <div class="input-group">
+                   <button>Cadastrar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    
+    <script src="{% static 'cadastro/cadastro.js' %}"></script>
+</body>
+</html>
