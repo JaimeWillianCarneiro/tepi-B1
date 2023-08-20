@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link  rel="stylesheet" href="cadastro/cadastro.css"> -
     <title>Cadastro</title>
   
     
@@ -33,7 +34,7 @@
               
 
 
-                <div class="input-group">
+                <div class="input-group ">
                     <label for="name" class="form_label"> Sobrenome:  </label>
                     <input type="text" id="sobrenome"  name= "sobrenome" placeholder="Digite seu sobrenome" required> 
                    
@@ -46,12 +47,12 @@
                   
                 </div>
 
-                <div class="input-group">
+                <div class="input-group ">
                     <label for="usuario"> Usuário</label>
                     <input type="text" id="username  name= "username" placeholder="Nome de usuário" required>
                     
                 </div>
-        <div class="input-group">
+        <div class="input-group ">
                     <label for="CPF"> CPF</label>
                   
                     <input type="text" id="cpf"  name= "cpf"  oninput="mascara(this)" placeholder="Digite seu CPF" required>
@@ -59,10 +60,10 @@
                     </div>
                 
         
-                <div class="input-group">
+                <div class="input-group ">
                     <label for="telefone">Telefone</label>
                     
-                    <input type="text" id="telefone onkeyup="handlePhone(event)" maxlength="15"   name= "telefone" placeholder="Digite seu telefone" required>
+                    <input type="text" id="telefone" onkeyup="handlePhone(event)" maxlength="15"   name= "telefone" placeholder="Digite seu telefone" required>
                 </div>
   
 
@@ -88,14 +89,14 @@
     </div>
   
     
-</body>
-<link  rel="stylesheet" href="cadastro/cadastro.css"> -
 
-<script src="validations.js"></script>
+
+<script src="cadastro.js"></script> 
+<script src="validation.js"></script> 
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -114,11 +115,19 @@
 
     const auth = getAuth(app);
 
-    const form = document.getElementById("formUsers");
+    const form = document.getElementById("formUsers")
 
 
     const buttonSubmit = document.getElementById('submitButton');
-    
+
+    console.log("antes");
+
+    // signInWithEmailAndPassword(auth, "paulorsaf@gmail.com", "123456").then(response => {
+    //     console.log('success', response)
+    // }).catch(error => {
+    //     console.log('error', error)
+    // });
+    // console.log('depois')
     
     form.addEventListener('submit', function(event){
 			event.preventDefault();
@@ -128,11 +137,11 @@
 			const senha = document.getElementById("password").value;
 
             buttonSubmit.disabled = true;
-			buttonSubmit.innerHTML = `
-            <div class="spinner-border text-success" role="status">
-                <span class="sr-only"></span>
-            </div>
-        	`;
+			// buttonSubmit.innerHTML = `
+            // <div class="spinner-border text-success" role="status">
+            //     <span class="sr-only"></span>
+            // </div>
+        	// `;
             
 			createUserWithEmailAndPassword(auth,email, senha)
 			.then(function(userCredential){
@@ -154,5 +163,7 @@
 		});
 
 </script>
+</body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </html>
