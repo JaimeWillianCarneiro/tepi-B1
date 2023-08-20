@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Cadastro</title>
   
     
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="input-group">
-                   <button>Cadastrar</button></div> 
+                   <button type="submit" id = "submitButton">Cadastrar</button></div> 
                 
             </form>
 
@@ -90,30 +90,69 @@
     
 </body>
 <link  rel="stylesheet" href="cadastro/cadastro.css"> -
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    
-    <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-auth-compat.js"></script>
-   
-<script> 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBOm2dHRfC0pn_8weQ1zixPHz3cNBpYOKE",
-    authDomain: "petshop-supimpa.firebaseapp.com",
-    projectId: "petshop-supimpa",
-    storageBucket: "petshop-supimpa.appspot.com",
-    messagingSenderId: "999502683212",
-    appId: "1:999502683212:web:47b6a22f62e6526cf968e9"
-  };
-  firebase.initializeApp(firebaseConfig);
-  console.log("antes")
-  firebase.auth().signInWithEmailAndPassword("paulorsaf@gmail.com", "123456").then(response => {
-        console.log('success', response)
-    }).catch(error => {
-        console.log('error', error)
-    });
-    console.log('depois')
+<script src="validations.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+          apiKey: "AIzaSyBOm2dHRfC0pn_8weQ1zixPHz3cNBpYOKE",
+          authDomain: "petshop-supimpa.firebaseapp.com",
+          projectId: "petshop-supimpa",
+          storageBucket: "petshop-supimpa.appspot.com",
+          messagingSenderId: "999502683212",
+          appId: "1:999502683212:web:47b6a22f62e6526cf968e9"
+        };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const form = document.getElementById("formUsers");
+
+
+    const buttonSubmit = document.getElementById('submitButton');
+    
+    
+    form.addEventListener('submit', function(event){
+			event.preventDefault();
+
+			const nome = document.getElementById('name').value;
+			const email = document.getElementById("email").value;
+			const senha = document.getElementById("password").value;
+
+            buttonSubmit.disabled = true;
+			buttonSubmit.innerHTML = `
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only"></span>
+            </div>
+        	`;
+            
+			createUserWithEmailAndPassword(auth,email, senha)
+			.then(function(userCredential){
+				const user = userCredential.user;
+
+                // Atualizar o perfil do usuário com o nome
+                updateProfile(user, {
+                    displayName: nome
+                }).then(function() {
+                    window.location.href = "home.html";
+                }).catch(function(error) {
+                    alert("Erro ao atualizar perfil: " + error.message);
+                })
+
+			}).catch(function(error){
+				alert("Ocorreu um erro");
+			});
+
+		});
+
 </script>
 
 </html>
