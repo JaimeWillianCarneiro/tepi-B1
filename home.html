@@ -8,7 +8,7 @@
 
     <title>PetShop</title>
     
-	<link rel="stylesheet" href="{% static 'css/style-carrinho.css' %}">
+	<link rel="stylesheet" href="style-carrinho.css">
 </head>
 <body>
 
@@ -45,6 +45,7 @@
     <!-- .menu-openner aparecera no modo mobile -->
     <header>
         <h1>Pet Shop</h1>
+        <h2 id="bemvindo"> </h2>
         <div class="menu-openner"><span>0</span>🛒</div>
     </header>
     <!-- /menu-openner -->
@@ -118,11 +119,55 @@
         </div>
     </div>
     <!-- /janela modal .pizzaWindowArea -->
-	    
-    <script src="{% static 'js/pizzas.js' %}"></script>
-	    
-    <script src="{% static 'js/script.js' %}"></script>
-    {% comment %} <script src="pizzas.js"></script>
-    <script src="js/script.js"></script> {% endcomment %}
-</body>
+	
+
+
+    
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+          apiKey: "AIzaSyBOm2dHRfC0pn_8weQ1zixPHz3cNBpYOKE",
+          authDomain: "petshop-supimpa.firebaseapp.com",
+          projectId: "petshop-supimpa",
+          storageBucket: "petshop-supimpa.appspot.com",
+          messagingSenderId: "999502683212",
+          appId: "1:999502683212:web:47b6a22f62e6526cf968e9"
+        };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+
+
+   function exibeDados(user){
+    const blocoUser = document.getElementById("bemvindo");
+
+
+    if (user){
+    blocoUser.innerHTML = `
+          <p> Bem vindo ${user.email} </p>
+        `;
+    } 
+
+
+
+
+    onAuthStateChanged(auth, function(user){
+        exibeDados(user)
+    }
+);
+
+</script>
+   
+	    </body>
+
 </html>
