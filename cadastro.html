@@ -20,6 +20,7 @@
         <div class="form-box">
             <h2>Criar Conta</h2>
             <p> Já é um membro? <a href="login.html">Login</a></p>
+            <!-- <p> Redefinir senha <a href="login.html">Login</a></p> -->
             <form name="form-users" id="formUsers" method="post" >
                 
 
@@ -138,13 +139,15 @@
 			const email = document.getElementById("email").value;
 			const senha = document.getElementById("password").value;
             const confsenha = document.getElementById("password-conf").value;
+            const tamanho =senha.length;
+            console.log(tamanho);
             // buttonSubmit.disabled = true;
 			// buttonSubmit.innerHTML = `
             // <div class="spinner-border text-success" role="status">
             //     <span class="sr-only"></span>
             // </div>
         	// `;
-            if ( senha == confsenha ){
+            if ( senha == confsenha  && tamanho >=6 ){
 			createUserWithEmailAndPassword(auth,email, senha)
 			.then(function(userCredential){
 				const user = userCredential.user;
@@ -154,6 +157,7 @@
                     displayName: nome
                 }).then(function() {
                     console.log('cadastrou');
+                    
                     window.location.href = "home.html";
                 }).catch(function(error) {
                     alert("Erro ao atualizar perfil: " + error.message);
@@ -164,7 +168,10 @@
 			});
         }
         else if (senha != confsenha){
-            alert("Campos senha e confirmação de senha não iguais.")
+            alert("Campos senha e confirmação de senha não iguais.");
+        }
+        else if (tamanho <6){
+            alert("A senha deve ter no mínimo 6 caracteres");
         }
 		});
 

@@ -1,0 +1,149 @@
+body{
+    /* background: #f9fff7; */
+    background:linear-gradient(#98FB98, #3CB371) ;
+    margin-top:20px;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.me-2 {
+    margin-right: .5rem!important;
+}
+
+#input-imagem {
+  display: none;
+}
+.box {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.box img{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.avatar::after {
+    opacity: 0;
+    font-family: FontAwesome;
+    content: "\f040";
+    color: #fff;
+    font-size: 2.5rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 4px;
+    left: 4px;
+    width: 92px;
+    height: 92px;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 350ms ease-in-out;
+}
+.avatar:hover::after {
+    opacity: 1;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+    box-sizing: border-box;
+    border: 4px solid silver;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.menu {
+    position: absolute;
+    opacity: 0;
+    width: 100px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    top: 60%;
+    left: 60%;
+    z-index: -1;
+    transition: 350ms ease-in-out;
+}
+.box input {
+    display: none;
+}
+.box input:checked + div.menu {
+    opacity: 1;
+    z-index: 999;
+}
+
+
+
+
+  /* .progress-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #ddd;
+    overflow: hidden;
+  }
+
+
+  .progress-bar::-webkit-progress-bar {
+    background-color: #ddd;
+  }
+
+
+  .progress-bar::-webkit-progress-value{
+    transition: all 0.2s ease;
+  }
+
+  .progress-bar[value ^= "0"]::-webkit-progress-bar-value {
+    background:  #ff0000 100%;
+  }
+  .progress-bar[value ^= "1"]::-webkit-progress-bar-value {
+    background:  #ff5900 100%;
+  }
+  .progress-bar[value ^= "2"]::-webkit-progress-bar-value {
+    background:  #ff7700 100%;
+  }
+  .progress-bar[value ^= "3"]::-webkit-progress-bar-value {
+    background:  #ff9900 100%;
+  }
+  .progress-bar[value ^= "4"]::-webkit-progress-bar-value {
+    background:  #ffc800 100%;
+  }
+  .progress-bar[value ^= "5"]::-webkit-progress-bar-value {
+    background:  #fffb00 100%;
+  }
+  .progress-bar[value ^="6"]::-webkit-progress-bar-value {
+    background:  #eeff00 100%;
+  }
+  .progress-bar[value ^= "7"]::-webkit-progress-bar-value {
+    background:  #aaff00 100%;
+  }
+  .progress-bar[value ^= "8"]::-webkit-progress-bar-value {
+    background:  #9dff00 100%;
+  }
+  .progress-bar[value ^= "9"]::-webkit-progress-bar-value {
+    background:  #6aff00 100%;
+  }
+  .progress-bar[value ^= "10"]::-webkit-progress-bar-value {
+    background:  #55ff00 100%;
+  } */
