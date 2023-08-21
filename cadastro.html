@@ -20,7 +20,7 @@
         <div class="form-box">
             <h2>Criar Conta</h2>
             <p> Já é um membro? <a href="login.html">Login</a></p>
-            <form name="form-users" id="formUsers" method="post" action="/store/">
+            <form name="form-users" id="formUsers" method="post" >
                 
 
                 
@@ -138,13 +138,13 @@
 			const email = document.getElementById("email").value;
 			const senha = document.getElementById("password").value;
             const confsenha = document.getElementById("password-conf").value;
-            buttonSubmit.disabled = true;
+            // buttonSubmit.disabled = true;
 			// buttonSubmit.innerHTML = `
             // <div class="spinner-border text-success" role="status">
             //     <span class="sr-only"></span>
             // </div>
         	// `;
-            if ( senha == confsenha && senha.lenght >=6){
+            if ( senha == confsenha ){
 			createUserWithEmailAndPassword(auth,email, senha)
 			.then(function(userCredential){
 				const user = userCredential.user;
@@ -153,6 +153,7 @@
                 updateProfile(user, {
                     displayName: nome
                 }).then(function() {
+                    console.log('cadastrou');
                     window.location.href = "home.html";
                 }).catch(function(error) {
                     alert("Erro ao atualizar perfil: " + error.message);
@@ -167,6 +168,9 @@
         }
 		});
 
+
+
+        console.log('teste');
 </script>
 </body>
 
