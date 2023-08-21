@@ -43,7 +43,7 @@
 
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email"  name= "email" placeholder="Digite seu e-mail" required>
+                    <input type="email" id="email"  name= "email" placeholder="Digite seu e-mail" required>
                   
                 </div>
 
@@ -137,14 +137,14 @@
 			const nome = document.getElementById('name').value;
 			const email = document.getElementById("email").value;
 			const senha = document.getElementById("password").value;
-
+            const confsenha = document.getElementById("password-conf").value;
             buttonSubmit.disabled = true;
 			// buttonSubmit.innerHTML = `
             // <div class="spinner-border text-success" role="status">
             //     <span class="sr-only"></span>
             // </div>
         	// `;
-            
+            if ( senha == confsenha){
 			createUserWithEmailAndPassword(auth,email, senha)
 			.then(function(userCredential){
 				const user = userCredential.user;
@@ -161,7 +161,10 @@
 			}).catch(function(error){
 				alert("Ocorreu um erro");
 			});
-
+        }
+        else{
+            alert("Campos senha e confirmação de senha não iguais.")
+        }
 		});
 
 </script>
