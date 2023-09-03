@@ -101,7 +101,7 @@
                 signInWithEmailAndPassword(auth,email, senha)
 			.then(function(userCredential){
 				const user = userCredential.user;
-				window.location.href = "home.html";
+				window.location.href = "perfil.html";
 			}).catch(function(error){
 				alert("Email e/ou senha incorretos");
 			});
