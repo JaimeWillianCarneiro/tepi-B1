@@ -129,7 +129,10 @@ console.log(nomeDoQuerido)
 const input_email = document.getElementById('email');
 const  inputPassword = document.getElementById('senha');
 const inputNewPassword = document.getElementById('novaSenha');
-	
+		// const inputImagem = document.getElementById('input-imagem');
+		const imagemPreview = document.getElementById('imagem-preview');
+	  const inputImagem = document.getElementById('input-imagem');
+		// const novaFoto = inputFile.files[0];
 	function getUser(user){
 
 
@@ -138,6 +141,7 @@ const inputNewPassword = document.getElementById('novaSenha');
 
 			input_name.value = user.displayName;
 			input_email.value = user.email;
+			imagemPreview.src = 
 		}
 		
 		
@@ -159,10 +163,7 @@ const inputNewPassword = document.getElementById('novaSenha');
 
 
 
-	// const inputImagem = document.getElementById('input-imagem');
-      const imagemPreview = document.getElementById('imagem-preview');
-	  const inputImagem = document.getElementById('input-imagem');
-		// const novaFoto = inputFile.files[0];
+
 
 
 	  //  ALterra imagem do perfil
