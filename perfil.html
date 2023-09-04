@@ -75,12 +75,12 @@
 										<label for="inputCity" class="form-label">Senha</label>
 										<input type="password"  class="form-control" id="senha">
 									  </div>
-									  <!-- <div class="col-md-6">
+									  <div class="col-md-6">
 										<label for="inputCity" class="form-label">Confirmar senha</label>
-										<input type="password" class="form-control" id="Confirmarsenha">
-									  </div> -->
+										<input type="password" class="form-control" id="novaSenha">
+									  </div>
 									<div class="col-12">
-									  <button type="submit" id ="buttonSubmit" class="btn btn-primary">Salvar alterações</button>
+									  <button id ="buttonSubmit" class="btn btn-primary">Salvar alterações</button>
 									</div>
 							</div>
                                 		
@@ -100,7 +100,7 @@
 	<script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, updateProfile,updateEmail } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+		import { getAuth, onAuthStateChanged, updateProfile, updateEmail, updatePassword, EmailAuthProvider, reauthenticateWithCredential, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       import  {getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-storage.js";;
@@ -161,7 +161,7 @@
 console.log(nomeDoQuerido)
 const emailInput = document.getElementById('email');
 const senha = document.getElementById('senha');
-// const confSenha = document.getElementById('Confirmarsenha');
+const NovaSenha = document.getElementById('novaSenha');
 		
 		function getUser(user){
 
@@ -195,10 +195,10 @@ const senha = document.getElementById('senha');
 		buttonSubmit.addEventListener("click", () => {
             
             const user = auth.currentUser;
-            const novoNome = nome.value;
-            const novoEmail = email.value; 
+            const novoNome = nomeInput.value;
+            const novoEmail = emailInput.value; 
             const novaImagem = inputImagem.files[0];
-            
+            const  senha = senha.value;
             const novaSenha = senha.value;
             
             if(novoNome !== "" && novoNome != user.displayName){
@@ -240,7 +240,7 @@ const senha = document.getElementById('senha');
             
             if(novaSenha !== ""){
 
-            signInWithEmailAndPassword(auth,user.email, novaSenha)
+            signInWithEmailAndPassword(auth,user.email, senha)
             .then(function(userCredential){
                 const user = userCredential.user;
                 updatePassword(user, novaSenha)
