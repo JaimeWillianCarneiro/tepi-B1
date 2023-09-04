@@ -22,7 +22,7 @@
 				<div class="col-lg-4">
 					<div class="card">
 						<div class="card-body">
-							<form  class="row g-3" id="form"  method="POST">
+							
 							<div class="d-flex flex-column align-items-center text-center">
 								
 <div class="box">
@@ -85,7 +85,7 @@
 							</div>
                                 		
 								
-							  </form>
+							
 							
 						</div>
 					</div>
@@ -120,6 +120,43 @@
         const auth = getAuth(app);
     
 
+		console.log("antes");
+    
+     
+	const nomeDoQuerido = document.getElementById("nomeDoQuerido");
+	  const input_name = document.getElementById('nome'); 
+console.log(nomeDoQuerido)
+const input_email = document.getElementById('email');
+const  inputPassword = document.getElementById('senha');
+const inputNewPassword = document.getElementById('novaSenha');
+	
+	function getUser(user){
+
+
+		if (user){
+			nomeDoQuerido.textContent = user.displayName;
+
+			input_name.value = user.displayName;
+			input_email.value = user.email;
+		}
+		
+		
+
+	}
+
+	// window.onload = function(){
+	// 	getUser()
+	// }
+
+
+	
+
+
+	onAuthStateChanged(auth, function(user){
+		getUser(user);
+	})
+
+
 
 
 	// const inputImagem = document.getElementById('input-imagem');
@@ -153,53 +190,18 @@
     
         // const buttonSubmit = document.getElementById('submitButton');
     
-        console.log("antes");
-    
-     
-        const nomeDoQuerido = document.getElementById("nomeDoQuerido");
-	  	const nomeInput = document.getElementById('nome'); 
-console.log(nomeDoQuerido)
-const emailInput = document.getElementById('email');
-const senha = document.getElementById('senha');
-const NovaSenha = document.getElementById('novaSenha');
-		
-		function getUser(user){
-
-
-			if (user){
-				nomeDoQuerido.textContent = user.displayName;
-
-				nomeInput.value = user.displayName;
-				emailInput.value = user.email;
-			}
-			
-			
-
-		}
-
-		// window.onload = function(){
-		// 	getUser()
-		// }
-
-
-		
-	
-    
-		onAuthStateChanged(auth, function(user){
-			getUser(user);
-		})
-
+       
 		const buttonSubmit = document.getElementById("buttonSubmit");
 
 
 		buttonSubmit.addEventListener("click", () => {
             
             const user = auth.currentUser;
-            const novoNome = nomeInput.value;
-            const novoEmail = emailInput.value; 
-            const novaImagem = inputImagem.files[0];
-            const  senha = senha.value;
-            const novaSenha = senha.value;
+            const novoNome = input_name.value;
+            const novoEmail = input_email.value; 
+            const new_image = inputImagem.files[0]
+            const senha = inputPassword.value;
+            const novaSenha = inputNewPassword.value;
             
             if(novoNome !== "" && novoNome != user.displayName){
                 updateProfile(user, {
@@ -219,9 +221,9 @@ const NovaSenha = document.getElementById('novaSenha');
 
             
 
-            if(novaImagem){
+            if(new_image){
                 const storageRef = ref(storage, `imagens_perfil/${user.uid}`);
-                uploadBytes(storageRef, novaImagem)
+                uploadBytes(storageRef, new_image)
                 .then(function() {
                     getDownloadURL(storageRef)
                     .then(function(imgURL) {
@@ -255,7 +257,7 @@ const NovaSenha = document.getElementById('novaSenha');
                 });
             }
 
-            alert("Processo finalizado");
+            alert("Dados Atualizados com Sucesso")
         })
     </script>
   </body>
