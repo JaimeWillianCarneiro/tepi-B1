@@ -1,6 +1,7 @@
 body{
     /* background: #f9fff7; */
-    background:linear-gradient(#98FB98, #3CB371) ;
+    /* background:linear-gradient(#98FB98, #3CB371) ; */
+    background-color:#98FB98;
     margin-top:20px;
 }
 .card {
